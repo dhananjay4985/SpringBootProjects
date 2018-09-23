@@ -42,8 +42,21 @@ public class User {
 	@Column(name="lastupdatetime")
 	private Date lastUpdateTime;
 	
-	@OneToMany(targetEntity=Note.class,mappedBy="user",fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+	@OneToMany(targetEntity=Note.class,mappedBy="user",fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	private List<Note> noteList = new ArrayList<Note>();
+
+	public User() {
+		//default constructor
+	}
+	public User(Integer userId, @NotBlank @Email String email, @NotBlank @Min(8) String password, Date createTime,
+			Date lastUpdateTime, List<Note> noteList) {
+		this.userId = userId;
+		this.email = email;
+		this.password = password;
+		this.createTime = createTime;
+		this.lastUpdateTime = lastUpdateTime;
+		this.noteList = noteList;
+	}
 
 	public Integer getUserId() {
 		return userId;
