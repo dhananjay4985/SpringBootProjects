@@ -2,8 +2,10 @@ package user.note.usernotewithcloudoauth2.model;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -31,9 +33,14 @@ public class Note {
 	@Column(name="lastupdatetime")
 	private Date lastUpdateTime;
 	
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	@JoinColumn(name="userid")
 	private User user;
+
+	
+	public Note() {
+		//default constructor
+	}
 
 	public Integer getNoteId() {
 		return noteId;
