@@ -6,4 +6,5 @@ import user.note.usernotewithcloudoauth2.model.Note;
 
 public interface NoteRepository extends JpaRepository<Note,Long>{
 
+	Note getNoteByTitle(String title);
 }
