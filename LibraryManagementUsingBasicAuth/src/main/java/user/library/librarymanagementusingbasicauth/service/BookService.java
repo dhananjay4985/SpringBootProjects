@@ -6,8 +6,9 @@ import user.library.librarymanagementusingbasicauth.model.Book;
 
 public interface BookService {
 
-	Book getBookById(Long bookId);
 	void createBook(Book book);
+	List<Book> getBook();
+	Book findById(Long bookId);
+	Book update(Book user, Long bookId);
 	void deleteBookById(Long bookId);
-	List<Book> getAllBooks();
 }

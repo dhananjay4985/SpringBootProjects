@@ -1,5 +1,9 @@
 package user.library.librarymanagementusingbasicauth.service;
 
-public interface UserService {
+import user.library.librarymanagementusingbasicauth.model.User;
 
+public interface UserService {
+	
+	boolean userLogin(String email,String password);
+	void addUser(User user);
 }
