@@ -12,7 +12,7 @@ public class Book {
 
 	@Id
 	@GeneratedValue
-	@Column(name="bookId")
+	@Column(name="bookid")
 	private Long bookId;
 	
 	@Column(name = "bookname")

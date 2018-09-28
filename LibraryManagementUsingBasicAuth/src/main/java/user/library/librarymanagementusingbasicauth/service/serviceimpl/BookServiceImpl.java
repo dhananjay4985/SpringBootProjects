@@ -11,15 +11,15 @@ import user.library.librarymanagementusingbasicauth.repository.BookRepository;
 import user.library.librarymanagementusingbasicauth.service.BookService;
 
 @Service
-public class BookServiceImpl implements BookService{
+public class BookServiceImpl implements BookService {
 
-	    //@Autowired
+	    @Autowired
 		private BookRepository bookRepository;
 
-		@Autowired
+		/*@Autowired
 		public BookServiceImpl(BookRepository bookRepository) {
 			this.bookRepository = bookRepository;
-		}
+		}*/
 
 		@Override
 		public void createBook(Book saveBook) {

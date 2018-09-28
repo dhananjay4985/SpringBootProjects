@@ -10,9 +10,14 @@ import user.library.librarymanagementusingbasicauth.service.UserService;
 @Service
 public class UserServiceImpl implements UserService{
 
-	@Autowired
 	private UserRepository userRepository;
 	
+	@Autowired
+	public UserServiceImpl(UserRepository userRepository) {
+		super();
+		this.userRepository = userRepository;
+	}
+
 	@Override
 	public boolean userLogin(String email, String password) {
 		boolean login = false;

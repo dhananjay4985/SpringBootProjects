@@ -25,33 +25,34 @@ import user.library.librarymanagementusingbasicauth.service.BookService;
 @CrossOrigin(origins="http://localhost:4200",allowedHeaders="*")
 public class BookController {
 
-	private BookService bookService;
-	
 	@Autowired
+	private BookService bookService;
+
+	/*@Autowired
 	public BookController(BookService bookService) {		
 		this.bookService = bookService;
-	}
-	
+	}*/
+
 	@GetMapping(value="/allbooks")
 	public List<Book> listAllBooks(){		
 		return bookService.getBook();
 	}	
-	
+
 	@GetMapping(value="/allbooks/{bookId}")
 	public Book getBookById(@PathVariable("bookId") Long bookId) {
 		return bookService.findById(bookId);
 	}	
-	
+
 	@PutMapping(value="/allbooks/{bookId}")
 	public Book updateBook(@PathVariable(value = "bookId") Long bookId,@Valid @RequestBody Book bookDetails) {
 		return bookService.update(bookDetails, bookId);
 	}
-	
+
 	@PostMapping("/allbooks")
 	public void createBook(@Valid @RequestBody Book book) {
 		bookService.createBook(book);
 	}
-	
+
 	@DeleteMapping("/allbooks/{bookId}")
 	public ResponseEntity<Void> deleteBook(@PathVariable(value = "bookId") Long bookId) {
 		bookService.deleteBookById(bookId);
