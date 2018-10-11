@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -14,13 +15,15 @@ import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name="note")
 public class Note {
 
 	@Id
-	@GeneratedValue
-	private Integer noteId;
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private Long noteId;
 	
 	@Column(name="title")
 	@NotBlank
@@ -33,8 +36,11 @@ public class Note {
 	@Column(name="lastupdatetime")
 	private Date lastUpdateTime;
 	
-	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+	private transient Long userId;
+	
+	@ManyToOne
 	@JoinColumn(name="userid")
+	@JsonIgnoreProperties("noteList")
 	private User user;
 
 	
@@ -42,11 +48,11 @@ public class Note {
 		//default constructor
 	}
 
-	public Integer getNoteId() {
+	public Long getNoteId() {
 		return noteId;
 	}
 
-	public void setNoteId(Integer noteId) {
+	public void setNoteId(Long noteId) {
 		this.noteId = noteId;
 	}
 
@@ -80,6 +86,14 @@ public class Note {
 
 	public void setUser(User user) {
 		this.user = user;
+	}	
+	
+	public Long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 
 	@Override

@@ -9,6 +9,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -16,13 +17,15 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 
 @Entity
 @Table(name="user")
 public class User {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="userid")
 	private Integer userId;
 	
@@ -42,7 +45,8 @@ public class User {
 	@Column(name="lastupdatetime")
 	private Date lastUpdateTime;
 	
-	@OneToMany(targetEntity=Note.class,mappedBy="user",fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+	@OneToMany(targetEntity=Note.class,mappedBy="user",fetch=FetchType.EAGER,cascade=CascadeType.ALL,orphanRemoval=true)
+	@JsonIgnoreProperties("user")
 	private List<Note> noteList = new ArrayList<Note>();
 
 	public User() {
