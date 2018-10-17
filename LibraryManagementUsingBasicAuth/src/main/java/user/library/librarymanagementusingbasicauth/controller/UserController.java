@@ -3,6 +3,7 @@ package user.library.librarymanagementusingbasicauth.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,6 +20,7 @@ import user.library.librarymanagementusingbasicauth.service.UserService;
 public class UserController {
 
 	@Autowired
+	@Qualifier("userService")
 	UserService userService;
 	
 	@GetMapping("/checkvaliduser/")

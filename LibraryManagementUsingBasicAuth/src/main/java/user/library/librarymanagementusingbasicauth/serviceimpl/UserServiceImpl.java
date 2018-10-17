@@ -1,23 +1,19 @@
-package user.library.librarymanagementusingbasicauth.service.serviceimpl;
+package user.library.librarymanagementusingbasicauth.serviceimpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import user.library.librarymanagementusingbasicauth.model.User;
 import user.library.librarymanagementusingbasicauth.repository.UserRepository;
 import user.library.librarymanagementusingbasicauth.service.UserService;
 
-@Service
+@Service("userService")
 public class UserServiceImpl implements UserService{
-
-	private UserRepository userRepository;
 	
 	@Autowired
-	public UserServiceImpl(UserRepository userRepository) {
-		super();
-		this.userRepository = userRepository;
-	}
-
+	private UserRepository userRepository;	
+	
 	@Override
 	public boolean userLogin(String email, String password) {
 		boolean login = false;

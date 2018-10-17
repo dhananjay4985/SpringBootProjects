@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -26,12 +27,9 @@ import user.library.librarymanagementusingbasicauth.service.BookService;
 public class BookController {
 
 	@Autowired
+	@Qualifier("bookService")
 	private BookService bookService;
 
-	/*@Autowired
-	public BookController(BookService bookService) {		
-		this.bookService = bookService;
-	}*/
 
 	@GetMapping(value="/allbooks")
 	public List<Book> listAllBooks(){		
@@ -44,8 +42,8 @@ public class BookController {
 	}	
 
 	@PutMapping(value="/allbooks/{bookId}")
-	public Book updateBook(@PathVariable(value = "bookId") Long bookId,@Valid @RequestBody Book bookDetails) {
-		return bookService.update(bookDetails, bookId);
+	public void updateBook(@PathVariable(value = "bookId") Long bookId,@Valid @RequestBody Book bookDetails) {
+		bookService.update(bookDetails, bookId);
 	}
 
 	@PostMapping("/allbooks")

@@ -1,8 +1,9 @@
-package user.library.librarymanagementusingbasicauth.service.serviceimpl;
+package user.library.librarymanagementusingbasicauth.serviceimpl;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import user.library.librarymanagementusingbasicauth.exception.ResourceNotFoundException;
@@ -10,16 +11,11 @@ import user.library.librarymanagementusingbasicauth.model.Book;
 import user.library.librarymanagementusingbasicauth.repository.BookRepository;
 import user.library.librarymanagementusingbasicauth.service.BookService;
 
-@Service
+@Service("bookService")
 public class BookServiceImpl implements BookService {
 
 	    @Autowired
-		private BookRepository bookRepository;
-
-		/*@Autowired
-		public BookServiceImpl(BookRepository bookRepository) {
-			this.bookRepository = bookRepository;
-		}*/
+	 	private BookRepository bookRepository;
 
 		@Override
 		public void createBook(Book saveBook) {
@@ -39,15 +35,14 @@ public class BookServiceImpl implements BookService {
 		}
 
 		@Override
-		public Book update(Book updateBook, Long bookId) {		
+		public void update(Book updateBook, Long bookId) {		
 			Book book = bookRepository.findById(bookId).orElseThrow(()-> new ResourceNotFoundException("Book","BookIs",bookId));
 			book.setBookId(updateBook.getBookId());
 			book.setAuthor(updateBook.getAuthor());
 			book.setBookName(updateBook.getBookName());
 			book.setGenre(updateBook.getGenre());
 			book.setIsbn(updateBook.getIsbn());
-			Book updatedBook = bookRepository.save(book);
-			return updatedBook;
+			bookRepository.save(book);
 		}
 
 		@Override
