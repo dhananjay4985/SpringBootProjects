@@ -5,7 +5,6 @@ import java.util.List;
 import user.note.usernotewithcloudoauth2.model.Note;
 
 public interface NoteService {
-
 	Note getNoteById(Long noteId);
 	void createNote(Note note);
 	void updateNote(Note Note);

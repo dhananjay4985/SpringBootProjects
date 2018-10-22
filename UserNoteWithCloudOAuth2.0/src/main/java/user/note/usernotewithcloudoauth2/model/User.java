@@ -27,7 +27,7 @@ public class User {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="userid")
-	private Integer userId;
+	private Long userId;
 	
 	@Column(name="email")
 	@NotBlank
@@ -52,7 +52,7 @@ public class User {
 	public User() {
 		//default constructor
 	}
-	public User(Integer userId, @NotBlank @Email String email, @NotBlank @Min(8) String password, Date createTime,
+	public User(Long userId, @NotBlank @Email String email, @NotBlank @Min(8) String password, Date createTime,
 			Date lastUpdateTime, List<Note> noteList) {
 		this.userId = userId;
 		this.email = email;
@@ -62,11 +62,11 @@ public class User {
 		this.noteList = noteList;
 	}
 
-	public Integer getUserId() {
+	public Long getUserId() {
 		return userId;
 	}
 
-	public void setUserId(Integer userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 

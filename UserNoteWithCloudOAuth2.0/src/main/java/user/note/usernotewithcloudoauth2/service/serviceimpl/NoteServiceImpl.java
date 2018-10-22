@@ -2,7 +2,10 @@ package user.note.usernotewithcloudoauth2.service.serviceimpl;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import user.note.usernotewithcloudoauth2.exception.ResourceNotFoundException;
@@ -12,6 +15,7 @@ import user.note.usernotewithcloudoauth2.repository.UserRepository;
 import user.note.usernotewithcloudoauth2.service.NoteService;
 
 @Service("noteService")
+@Transactional
 public class NoteServiceImpl implements NoteService{
 
 	@Autowired
@@ -22,8 +26,9 @@ public class NoteServiceImpl implements NoteService{
 
 	@Override
 	public Note getNoteById(Long noteId) {
-		return noteRepository.findById(noteId)
-				.orElseThrow(()-> new ResourceNotFoundException("noteId", "Note",noteId));
+		Note note = noteRepository.findById(noteId).orElseThrow(()-> new ResourceNotFoundException("noteId", "Note",noteId));
+		note.setUserId(note.getUser().getUserId());
+		return note;
 	}
 
 	@Override
@@ -40,6 +45,7 @@ public class NoteServiceImpl implements NoteService{
 		existingNote.setCreatTime(updatedNote.getCreatTime());
 		existingNote.setLastUpdateTime(updatedNote.getLastUpdateTime());
 		existingNote.setUser(userRepository.getOne(updatedNote.getUserId()));
+		noteRepository.save(existingNote);
 	}
 
 	@Override
@@ -49,12 +55,17 @@ public class NoteServiceImpl implements NoteService{
 
 	@Override
 	public Note getNoteByTitle(String title) {
-		return noteRepository.getNoteByTitle(title);
+		Note note = noteRepository.getNoteByTitle(title);
+		note.setUserId(note.getUser().getUserId());
+		return note;
 	}
 
 	@Override
 	public List<Note> getAllNote() {
-		return noteRepository.findAll();
+		List<Note> noteList = noteRepository.findAll();
+		noteList.forEach(note->{
+			note.setUserId(note.getUser().getUserId());
+		});
+		return noteList;
 	}
-
 }

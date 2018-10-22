@@ -5,8 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import user.note.usernotewithcloudoauth2.model.Note;
 
-@Repository
+@Repository("noteRepository")
 public interface NoteRepository extends JpaRepository<Note,Long>{
-
 	Note getNoteByTitle(String title);
 }

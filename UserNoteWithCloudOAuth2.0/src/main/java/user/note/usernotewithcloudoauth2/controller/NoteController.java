@@ -15,32 +15,26 @@ import user.note.usernotewithcloudoauth2.model.Note;
 import user.note.usernotewithcloudoauth2.service.NoteService;
 
 @RestController
-@RequestMapping("/notes")
 public class NoteController {
 
 	@Autowired
-	@Qualifier("noteService")
 	private NoteService noteService;
 
-	@PutMapping("/addnote")
+	@GetMapping("/notes")
+	public List<Note> getAllNotes(){
+		return noteService.getAllNote();
+	}
+	@PutMapping("/notes/addnote")
 	public void addNote(@RequestBody Note note) {
 		noteService.createNote(note);
 	}
 
-	@GetMapping("/note/{noteId}")
+	@GetMapping("/notes/noteid/{noteId}")
 	public Note getNoteById(@PathVariable("noteId") Long noteId) {
 		return noteService.getNoteById(noteId);
 	}
-
-	@GetMapping("/note/{title}")
+	@GetMapping("/notes/note/notetitle/{title}")
 	public Note getNoteByTitle(@PathVariable("title") String title) {
 		return noteService.getNoteByTitle(title);
 	}
-
-	@GetMapping
-	public List<Note> getAllNotes(){
-		return noteService.getAllNote();
-	}
-	
-	
 }
