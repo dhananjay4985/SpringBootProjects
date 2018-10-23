@@ -1,19 +1,19 @@
-create table book
+create table BOOK
 (
-   bookid long not null,
-   bookname text,
-   author text,
-   genre text,
-   isbn text,
-   primary key(bookid)
+   BOOKID long not null,
+   BOOKNAME text,
+   AUTHOR text,
+   GENRE text,
+   ISBN text,
+   primary key(BOOKID)
 );
 
 
-create table user(
-   userid long not null,
-   email text,
-   password text,
-   category text,
-   primary key(userid)
+create table USER(
+   USERID long not null,
+   EMAIL text,
+   PASSWORD text,
+   CATEGORY text,
+   primary key(USERID)
 
 );
