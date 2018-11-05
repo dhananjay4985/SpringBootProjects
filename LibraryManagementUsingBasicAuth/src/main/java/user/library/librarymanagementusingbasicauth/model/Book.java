@@ -11,7 +11,6 @@ import javax.persistence.Table;
 public class Book {
 
 	@Id
-	@GeneratedValue
 	@Column(name="bookid")
 	private Long bookId;
 	
