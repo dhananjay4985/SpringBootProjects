@@ -6,12 +6,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import user.library.librarymanagementusingbasicauth.utility.Category;
+
 @Entity
 @Table(name="user")
 public class User {
 
 	@Id
-	@GeneratedValue
 	@Column(name = "userid")
 	private Long userId;
 
@@ -22,13 +23,13 @@ public class User {
 	private String password;
 
 	@Column(name = "category")
-	private String userCategory;
+	private Category userCategory;
 
 	public User() {
 		super();
 	}
-
-	public User(Long userId, String email, String password, String userCategory) {
+	
+	public User(Long userId, String email, String password, Category userCategory) {
 		super();
 		this.userId = userId;
 		this.email = email;
@@ -54,15 +55,16 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getUserCategory() {
+	public Category getUserCategory() {
 		return userCategory;
 	}
-	public void setUserCategory(String userCategory) {
+	public void setUserCategory(Category userCategory) {
 		this.userCategory = userCategory;
 	}
+
 	@Override
 	public String toString() {
 		return "User [userId=" + userId + ", email=" + email + ", password=" + password + ", userCategory="
 				+ userCategory + "]";
-	}		
+	}
 }
