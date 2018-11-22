@@ -15,10 +15,16 @@ export class LoginUserComponent implements OnInit {
   submitted: boolean = false;
   invalidLogin: boolean = false;
   errorMessage: string = '';
-  constructor(private formBuilder: FormBuilder,private router:Router,private authService:AuthService) { }
-	
-	
-   onSubmit() {
+  
+  constructor(private formBuilder: FormBuilder,private router:Router) { }
+  
+  ngOnInit() {
+  this.loginForm = this.formBuilder.group({
+		email:['',Validators.required],
+		password:['',Validators.required]
+	});
+  }//ngon
+  onSubmit() {
 	this.submitted = true;
 	if(this.loginForm.invalid) {
 		return;
@@ -29,13 +35,5 @@ export class LoginUserComponent implements OnInit {
 	else{
 		this.invalidLogin = true;
 	}
-	
-  ngOnInit() {
-  this.loginForm = this.formBuilder.group({
-		email:['',Validators.required],
-		password:['',Validators.required]
-	});
+   }//onSubmit
   }
-  }
-
-}
