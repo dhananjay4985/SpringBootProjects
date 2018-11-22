@@ -8,7 +8,8 @@ import { CommonModule } from '@angular/common';
 import { AddBookComponent } from './add-book/add-book.component';
 import { ListBookComponent } from './list-book/list-book.component';
 import { EditBookComponent } from './edit-book/edit-book.component';
-import { LoginUserComponent } from './login-user/login-user.component'
+import { LoginUserComponent } from './login-user/login-user.component';
+import { RegistrationComponent } from './registration/registration.component';
 
 
 const routes: Routes =[ 
@@ -16,6 +17,7 @@ const routes: Routes =[
   {path: 'list-book',component:ListBookComponent}, 
   {path: 'edit-book',component:EditBookComponent},
   {path: 'login-user',component:LoginUserComponent},
+  {path: 'register',component:RegistrationComponent},
   {path: '',component:LoginUserComponent} 
   ];
   
@@ -25,4 +27,4 @@ const routes: Routes =[
 })
 
 export class AppRoutingModule{}
-export const routingComponents = [LoginUserComponent,ListBookComponent,EditBookComponent];
+export const routingComponents = [LoginUserComponent,ListBookComponent,EditBookComponent,RegistrationComponent];
