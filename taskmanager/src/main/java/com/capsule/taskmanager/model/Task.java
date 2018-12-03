@@ -28,11 +28,9 @@ public class Task {
 	@Column(name = "enddate")
 	private Date endDate;
 
-
 	public Task() {
 		super();
 	}
-
 	public Task(Long taskId, Long parentId, String taskName, Date startDate, Date endDate) {
 		super();
 		this.taskId = taskId;
@@ -41,8 +39,6 @@ public class Task {
 		this.startDate = startDate;
 		this.endDate = endDate;
 	}
-
-
 
 	public Long getTaskId() {
 		return taskId;

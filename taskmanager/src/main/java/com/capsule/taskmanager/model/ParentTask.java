@@ -10,8 +10,8 @@ import javax.persistence.Table;
 public class ParentTask {
 	
     @Id
-	@Column(name = "parentid")
-	private Long parentId;
+	@Column(name = "parenttaskid")
+	private Long parentTaskId;
 
 	@Column(name = "parenttask")
 	private String parentTask;
@@ -20,18 +20,18 @@ public class ParentTask {
 		super();
 	}
 
-	public ParentTask(Long parentId, String parentTask) {
+	public ParentTask(Long parentTaskId, String parentTask) {
 		super();
-		this.parentId = parentId;
+		this.parentTaskId = parentTaskId;
 		this.parentTask = parentTask;
 	}
 
-	public Long getParentId() {
-		return parentId;
+	public Long getParentTaskId() {
+		return parentTaskId;
 	}
 
-	public void setParentId(Long parentId) {
-		this.parentId = parentId;
+	public void setParentTaskId(Long parentTaskId) {
+		this.parentTaskId = parentTaskId;
 	}
 
 	public String getParentTask() {
@@ -44,7 +44,7 @@ public class ParentTask {
 
 	@Override
 	public String toString() {
-		return "ParentTask [parentId=" + parentId + ", parentTask=" + parentTask + "]";
+		return "ParentTask [parentTaskId=" + parentTaskId + ", parentTask=" + parentTask + "]";
 	}	
 
 }
