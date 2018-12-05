@@ -1,10 +1,18 @@
 package com.capsule.taskmanager.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.mapping.Set;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.util.Date;
 
 @Entity
@@ -14,10 +22,6 @@ public class Task {
 	@Id	
 	@Column(name = "taskid")	
 	private Long taskId;
-
-	@ManyToOne
-	@Column(name = "parentid")
-	private Long parentId;
 	
 	@Column(name = "taskname")
 	private String taskName;
@@ -27,17 +31,25 @@ public class Task {
 
 	@Column(name = "enddate")
 	private Date endDate;
-
+	
+	private transient Long parentId;
+	
+	@ManyToOne(cascade= {CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.DETACH,CascadeType.REMOVE})
+	@JoinColumn(name="parentid")
+	@JsonIgnoreProperties("taskSet")
+	private ParentTask parentTask;
+	
 	public Task() {
 		super();
-	}
-	public Task(Long taskId, Long parentId, String taskName, Date startDate, Date endDate) {
+	}	
+
+	public Task(Long taskId, String taskName, Date startDate, Date endDate, ParentTask parentTask) {
 		super();
 		this.taskId = taskId;
-		this.parentId = parentId;
 		this.taskName = taskName;
 		this.startDate = startDate;
 		this.endDate = endDate;
+		this.parentTask = parentTask;
 	}
 
 	public Long getTaskId() {
@@ -79,9 +91,19 @@ public class Task {
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
+
+	public ParentTask getParentTask() {
+		return parentTask;
+	}
+
+	public void setParentTask(ParentTask parentTask) {
+		this.parentTask = parentTask;
+	}
+
 	@Override
 	public String toString() {
-		return "Task [taskId=" + taskId + ", parentId=" + parentId + ", taskName=" + taskName + ", startDate=" + startDate
-				+ ", endDate=" + endDate + "]";
-	}
+		return "Task [taskId=" + taskId + ", taskName=" + taskName + ", startDate=" + startDate + ", endDate=" + endDate
+				+ ", parentTask=" + parentTask + "]";
+	}	
+	
 }

@@ -14,8 +14,13 @@ import com.capsule.taskmanager.service.ParentTaskService;
 @Service("parentTaskService")
 public class ParentTaskServiceImpl implements ParentTaskService{
 
-	@Autowired
+	//@Autowired
 	private ParentTaskRepo parentTaskRepo;
+	
+	@Autowired
+	public ParentTaskServiceImpl(ParentTaskRepo parentTaskRepo) {		
+		this.parentTaskRepo = parentTaskRepo;
+	}
 	
 	@Override
 	public void createParentTask(ParentTask parentTask) {
