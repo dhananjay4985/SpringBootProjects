@@ -42,11 +42,11 @@ public class TaskController {
 	public void editTask(@PathVariable(value = "taskId") Long taskId,@Valid @RequestBody Task taskDetails) {
 		taskService.editTask(taskDetails, taskId);
 	}		
-	@PostMapping("/alltasks")
+	@PostMapping(value="/alltasks")
 	public void createTask(@Valid @RequestBody Task task) {
 		taskService.createTask(task);
 	}
-	@DeleteMapping("/allbooks/{taskId}")
+	@DeleteMapping(value="/alltasks/{taskId}")
 	public ResponseEntity<Void> deleteTask(@PathVariable(value = "taskId") Long taskId) {
 		taskService.deleteTask(taskId);
 		return ResponseEntity.ok().build();

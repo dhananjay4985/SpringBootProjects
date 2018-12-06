@@ -22,7 +22,7 @@ import com.capsule.taskmanager.service.ParentTaskService;
 
 
 @RestController
-@RequestMapping(value="/taskmanager")
+@RequestMapping(value="/parenttaskmanager")
 @CrossOrigin(origins="http://localhost:4200",allowedHeaders="*")
 public class ParentTaskController {
 	
@@ -30,23 +30,23 @@ public class ParentTaskController {
 	@Qualifier("parentTaskService")
 	private ParentTaskService parentTaskService;
 	
-	@GetMapping(value="/alltasks")
+	@GetMapping(value="/allparenttasks")
 	public List<ParentTask> listAllParentTasks(){		
 		return parentTaskService.getParentTask();
 	}
-	@GetMapping(value="/alltasks/{parentTaskId}")
+	@GetMapping(value="/allparenttasks/{parentTaskId}")
 	public ParentTask getParentTaskById(@PathVariable("parentTaskId") Long parentTaskId) {
 		return parentTaskService.findById(parentTaskId);
 	}	
-	@PutMapping(value="/alltasks/{parentTaskId}")
+	@PutMapping(value="/allparenttasks/{parentTaskId}")
 	public void editParentTask(@PathVariable(value = "parentTaskId") Long parentTaskId,@Valid @RequestBody ParentTask parentTaskDetails) {
 		parentTaskService.editParentTask(parentTaskDetails, parentTaskId);
 	}		
-	@PostMapping("/alltasks")
+	@PostMapping(value="/allparenttasks")
 	public void createParentTask(@Valid @RequestBody ParentTask parentTask) {
 		parentTaskService.createParentTask(parentTask);
 	}
-	@DeleteMapping("/allbooks/{parentTaskId}")
+	@DeleteMapping(value="/allparenttasks/{parentTaskId}")
 	public ResponseEntity<Void> deleteTask(@PathVariable(value = "parentTaskId") Long parentTaskId) {
 		parentTaskService.deleteParentTask(parentTaskId);
 		return ResponseEntity.ok().build();

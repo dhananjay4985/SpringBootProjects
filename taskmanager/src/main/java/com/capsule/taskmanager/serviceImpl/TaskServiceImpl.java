@@ -31,22 +31,27 @@ public class TaskServiceImpl implements TaskService {
 	}
 	@Override
 	public List<Task> getTask() {
-		return taskRepo.findAll();
+		List<Task> taskList = taskRepo.findAll();
+		for(Task task : taskList) {
+			task.setParentId(task.getParentTask().getParentTaskId());
+		}
+		return taskList;
 	}
 	@Override
 	public Task findById(Long taskId) {
 		Task task = taskRepo.findById(taskId).orElseThrow(() -> new ResourceNotFoundException("Task", "TaskId", taskId));
-		task.setParentTask(task.
+		task.setParentTask(parentTaskRepo.getOne(task.getParentId()));
 		return task;
 	}
 	@Override
-	public void editTask(Task task, Long taskId) {
-		Task task1 = taskRepo.findById(taskId).orElseThrow(() -> new ResourceNotFoundException("Task", "TaskId", taskId));
-		task1.setEndDate(task1.getEndDate());
-		task1.setParentId(task1.getParentId());
-		task1.setStartDate(task1.getStartDate());
-		task1.setTaskId(task1.getTaskId());
-		task1.setTaskName(task1.getTaskName());
+	public void editTask(Task updateTask, Long taskId) {
+		Task task = taskRepo.findById(taskId).orElseThrow(() -> new ResourceNotFoundException("Task", "TaskId", taskId));
+		task.setEndDate(updateTask.getEndDate());
+		task.setParentId(updateTask.getParentId());
+		task.setStartDate(updateTask.getStartDate());
+		task.setTaskId(updateTask.getTaskId());
+		task.setTaskName(updateTask.getTaskName());
+		task.setParentTask(parentTaskRepo.getOne(updateTask.getParentId()));
 		taskRepo.save(task);
 	}
 	@Override
