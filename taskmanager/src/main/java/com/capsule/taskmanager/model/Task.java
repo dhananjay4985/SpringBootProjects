@@ -6,10 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import org.hibernate.mapping.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -32,6 +29,9 @@ public class Task {
 	@Column(name = "enddate")
 	private Date endDate;
 	
+	@Column(name= "priority")
+	private Integer priority;
+	
 	private transient Long parentId;
 	
 	@ManyToOne(cascade= {CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.DETACH,CascadeType.REMOVE})
@@ -43,13 +43,14 @@ public class Task {
 		super();
 	}	
 
-	public Task(Long taskId, String taskName, Date startDate, Date endDate, ParentTask parentTask) {
+	public Task(Long taskId, String taskName, Date startDate, Date endDate, ParentTask parentTask,Integer priority) {
 		super();
 		this.taskId = taskId;
 		this.taskName = taskName;
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.parentTask = parentTask;
+		this.priority=priority;
 	}
 
 	public Long getTaskId() {
@@ -99,15 +100,18 @@ public class Task {
 	public void setParentTask(ParentTask parentTask) {
 		this.parentTask = parentTask;
 	}
+	
+	public Integer getPriority() {
+		return priority;
+	}
+
+	public void setPriority(Integer priority) {
+		this.priority = priority;
+	}
 
 	@Override
 	public String toString() {
 		return "Task [taskId=" + taskId + ", taskName=" + taskName + ", startDate=" + startDate + ", endDate=" + endDate
 				+ ", parentTask=" + parentTask + "]";
-	}	
-	
-	
-	
-	
-	
+	}		
 }

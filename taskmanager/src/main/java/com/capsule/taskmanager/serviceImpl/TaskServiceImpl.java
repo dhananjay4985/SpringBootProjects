@@ -51,6 +51,7 @@ public class TaskServiceImpl implements TaskService {
 		task.setStartDate(updateTask.getStartDate());
 		task.setTaskId(updateTask.getTaskId());
 		task.setTaskName(updateTask.getTaskName());
+		task.setPriority(updateTask.getPriority());
 		task.setParentTask(parentTaskRepo.getOne(updateTask.getParentId()));
 		taskRepo.save(task);
 	}
