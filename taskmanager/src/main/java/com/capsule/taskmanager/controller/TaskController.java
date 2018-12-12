@@ -31,11 +31,13 @@ public class TaskController {
 	private TaskService taskService;
 	
 	@GetMapping(value="/alltasks")
-	public List<Task> listAllTasks(){		
+	public List<Task> listAllTasks(){
+		System.out.println("Inside listAllTasks");
 		return taskService.getTask();
 	}
 	@GetMapping(value="/alltasks/{taskId}")
 	public Task getTaskById(@PathVariable("taskId") Long taskId) {
+		System.out.println("Inside getTaskById");
 		return taskService.findById(taskId);
 	}	
 	@PutMapping(value="/alltasks/{taskId}")

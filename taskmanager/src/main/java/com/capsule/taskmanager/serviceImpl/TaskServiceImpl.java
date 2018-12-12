@@ -32,6 +32,7 @@ public class TaskServiceImpl implements TaskService {
 	@Override
 	public List<Task> getTask() {
 		List<Task> taskList = taskRepo.findAll();
+		System.out.println("Inside getTaskList service");
 		for(Task task : taskList) {
 			task.setParentId(task.getParentTask().getParentTaskId());
 		}
@@ -39,6 +40,7 @@ public class TaskServiceImpl implements TaskService {
 	}
 	@Override
 	public Task findById(Long taskId) {
+		System.out.println("Inside findById service");
 		Task task = taskRepo.findById(taskId).orElseThrow(() -> new ResourceNotFoundException("Task", "TaskId", taskId));
 		task.setParentTask(parentTaskRepo.getOne(task.getParentId()));
 		return task;

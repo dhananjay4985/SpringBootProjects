@@ -3,6 +3,8 @@ package com.capsule.taskmanager.model;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -17,6 +19,7 @@ import java.util.Date;
 public class Task {
 
 	@Id	
+	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	@Column(name = "taskid")	
 	private Long taskId;
 	
@@ -112,6 +115,8 @@ public class Task {
 	@Override
 	public String toString() {
 		return "Task [taskId=" + taskId + ", taskName=" + taskName + ", startDate=" + startDate + ", endDate=" + endDate
-				+ ", parentTask=" + parentTask + "]";
-	}		
+				+ ", priority=" + priority + ", parentId=" + parentId + "]";
+	}
+
+		
 }
