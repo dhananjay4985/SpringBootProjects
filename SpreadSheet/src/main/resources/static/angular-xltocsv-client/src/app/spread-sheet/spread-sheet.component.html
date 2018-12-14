@@ -1,0 +1,71 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    Welcome to {{ title }}!
+  </h1>
+</div>
+<div class="container">	
+	<table class="table table-hover table-bordered">
+	  <thead>
+			<tr>
+				<th scope="col">krnId</th>
+				<th scope="col">Area</th>
+				<th scope="col">userName</th>
+				<th scope="col">givenName</th>
+				<th scope="col">familyName</th>
+				<th scope="col">mail</th>
+				<th scope="col">workPhone</th>
+				<th scope="col">mobile</th>
+				<th scope="col">middleName</th>
+				<th scope="col">homePhone</th>
+				<th scope="col">preferredLanguage</th>
+				<th scope="col">gender</th>		  
+				<th scope="col">employeeNumber</th>
+				<th scope="col">sendWelcomeMail</th>
+				<th scope="col">Antares</th>
+				<th scope="col">Telios</th>
+				<th scope="col">Storm</th>
+				<th scope="col">ServiceNow</th>		  
+				<th scope="col">Comarch</th>
+				<th scope="col">coreTenantAdmin</th>
+				<th scope="col">Beheren</th>
+				<th scope="col">ClientITManager</th>
+			</tr>
+	  </thead>
+	  <tbody>
+			<tr *ngFor="let template of templates">
+				<td>{{template.krnId}}</td>
+				<td>{{template.Area}}</td>
+				<td>{{template.userName}}</td>
+				<td>{{template.givenName}}</td>
+				<td>{{template.familyName}}</td>
+				<td>{{template.mail}}</td>
+				<td>{{template.workPhone}}</td>
+				<td>{{template.mobile}}</td>
+				<td>{{template.middleName}}</td>
+				<td>{{template.homePhone}}</td>	
+				<td>{{template.preferredLanguage}}</td>	
+				<td>{{template.gender}}</td>	
+				<td>{{template.employeeNumber}}</td>
+				<td>{{template.sendWelcomeMail}}</td>
+				<td>{{template.antares}}</td>
+				<td>{{template.telios}}</td>
+				<td>{{template.storm}}</td>
+				<td>{{template.serviceNow}}</td>
+				<td>{{template.comarch}}</td>
+				<td>{{template.coreTenantAdmin}}</td>
+				<td>{{template.beheren}}</td>	
+				<td>{{template.clientITManager}}</td>				
+			</tr>
+	  </tbody>
+	</table>
+	<br>
+	<br>
+</div>		
+
+<div class="button-container">
+	<input type="file" style="display: inline-block;" (change)="incomingfile($event)" placeholder="Upload file" accept=".xlsx">
+	<button type="button" class="btn btn-info" (click)="Upload()" >Upload File</button>&nbsp; 
+	<button class = "btn btn-info"(click)="exportToCSV(templates)">Export to CSV</button>&nbsp;
+	<button class = "btn btn-primary"(click)="newCSVRecord()">New Record</button>
+</div>

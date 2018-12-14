@@ -1,0 +1,24 @@
+export class Template {
+	krnId:number;
+	area:string;
+	userName:string;
+	givenName:string;
+	familyName:string;
+	mail:string;
+	workPhone:number;
+	mobile:number;
+	middleName:string;
+	homePhone:string;
+	preferredLanguage:string;
+	gender:string;
+	employeeNumber:number;
+	sendWelcomeMail:string;
+	antares:string;
+	telios:string;
+	storm:string;
+	serviceNow:string;
+	comarch:string;
+	coreTenantAdmin:string;
+	beheren:string;
+	clientITManager:string;	
+}

@@ -1,0 +1,80 @@
+<div style="text-align:center">
+  <h1>
+    <h3>Add CSV Record here..</h3>
+  </h1>
+<div class="container">
+	<form #csvForm="ngForm" (ngSubmit)="processForm(csvForm)">
+			<div class="row">				
+					<div class="col-lg-3">
+						<input type="text"  name ="krnId" class="form-control" placeholder="krnId" required [(ngModel)]="template.krnId" />	
+					</div>		
+					<div class="col-sm-3">
+						<input type="text"  name ="area" class="form-control" placeholder="Area" required [(ngModel)]="template.area"/>	
+					</div>						
+					<div class="col-sm-3">
+						<input type="text"  name ="userName" class="form-control" placeholder="User Name" required [(ngModel)]="template.userName"/>	
+					</div>
+					<div class="col-sm-3">
+						<input type="text"  name ="givenName" class="form-control" placeholder="Given Name" required required [(ngModel)]="template.givenName"/>	
+					</div>		
+			</div>
+			<br>
+			<div class="row">				
+					<div class="col-sm-3">
+						<input type="text"  name ="familyName" class="form-control" placeholder="Family Name" required [(ngModel)]="template.familyName"/>	
+					</div>
+					<div class="col-sm-3">
+						<input type="email"  name ="mail" class="form-control" class="form-control" placeholder="Mail" [(ngModel)]="template.mail" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required/>	
+					</div>				
+					<div class="col-sm-3">
+						<input type="text"  name ="workPhone" class="form-control" placeholder="WorkPhone" required [(ngModel)]="template.workPhone"/>	
+					</div>				
+					<div class="col-sm-3">
+						<input type="tel"  name ="mobile" class="form-control" placeholder="Mobile" required [(ngModel)]="template.mobile"/>	
+					</div>							
+			</div>
+			<br>		
+			<div class="row">				
+					<div class="col-sm-3">
+						<input type="text" name ="middleName" class="form-control" placeholder="Middle Name" required [(ngModel)]="template.middleName"/>	
+					</div>			
+					<div class="col-sm-3">
+						<input type="text" name ="homePhone" class="form-control" placeholder="HomePhone" required [(ngModel)]="template.homePhone"/>	
+					</div>				
+					<div class="col-sm-3">
+						<input type="text" name ="preferredLanguage" class="form-control" placeholder="PreferredLanguage" required [(ngModel)]="template.preferredLanguage"/>	
+					</div>				
+					<div class="col-sm-3">
+						<input type="text"  name="employeeNumber" class="form-control" placeholder="EmployeeNumber" required [ngModel]="template.employeeNumber"/>	
+					</div>						
+			</div>
+			<br>
+			<div class="row">				
+			<div class="col-sm-4">
+						<label>Gender
+						&nbsp;
+						<input type="radio" value="male" name="gender"  required   [(ngModel)]="template.gender">Male		
+							&nbsp;				
+						<input type="radio" value="female" name="gender" required   [(ngModel)]="template.gender">Female	</label>					
+			</div>				
+					<div class="col-sm-5">
+						<label>SendWelcomeMail
+						&nbsp;
+						<input type="checkbox" name="sendWelcomeMailTrue" class="checkbox" id="true" 
+									[(ngModel)]="template.sendWelcomeMail" value="False">
+						<label >True</label>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="checkbox" name="sendWelcomeMailFalse" class="checkbox" id="false"
+									[(ngModel)]="template.sendWelcomeMail" value="False">
+						<label>False</label>
+						</label>
+					</div>							
+			</div>		
+		<br>		
+			<button type="submit" [disabled]="!csvForm.valid" class = "btn btn-success">Save</button>&nbsp;&nbsp;			
+	</form>
+</div>
+
+
+	
+			
