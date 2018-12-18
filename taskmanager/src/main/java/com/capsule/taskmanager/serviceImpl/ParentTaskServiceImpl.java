@@ -40,13 +40,19 @@ public class ParentTaskServiceImpl implements ParentTaskService{
 		
 		ParentTask parentTask = parentTaskRepo.findById(parentTaskId).orElseThrow(() -> new ResourceNotFoundException("ParentTask", "ParentTaskId", parentTaskId));
 		parentTask.setParentTaskId(parentTask.getParentTaskId());
-		parentTask.setParentTask(parentTask.getParentTask());		
+		parentTask.setParentTaskName(parentTask.getParentTaskName());			
 		parentTaskRepo.save(parentTask);
 	}
 	@Override
-	public void deleteParentTask(Long parentTaskId) {
-		
+	public void deleteParentTask(Long parentTaskId) {		
 		ParentTask parentTask = parentTaskRepo.findById(parentTaskId).orElseThrow(() -> new ResourceNotFoundException("ParentTask", "ParentTaskId", parentTaskId));
 		parentTaskRepo.delete(parentTask);
 	}
+
+	@Override
+	public ParentTask findByTaskName(String parentTaskName) {
+		ParentTask parentTask = parentTaskRepo.findTaskByName(parentTaskName);
+		return parentTask;
+	}
+	
 }

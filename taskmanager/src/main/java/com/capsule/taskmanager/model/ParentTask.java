@@ -16,16 +16,16 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@Table(name="ParentTask")
-public class ParentTask {
+@Table(name="parenttask")
+public class ParentTask  {
 	
-    @Id
+  	@Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE)
 	@Column(name = "parenttaskid")
 	private Long parentTaskId;
 
-	@Column(name = "parenttask")
-	private String parentTask;
+	@Column(name = "parenttaskname")
+	private String parentTaskName;
 	
 	@OneToMany(fetch = FetchType.EAGER,targetEntity = Task.class ,mappedBy ="parentTask",cascade= {CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.DETACH,CascadeType.REMOVE})
 	@JsonIgnoreProperties("parentTask")	
@@ -35,10 +35,10 @@ public class ParentTask {
 		super();
 	}	
 
-	public ParentTask(Long parentTaskId, String parentTask, Set<Task> taskSet) {
+	public ParentTask(Long parentTaskId, String parentTaskName, Set<Task> taskSet) {
 		super();
 		this.parentTaskId = parentTaskId;
-		this.parentTask = parentTask;
+		this.parentTaskName = parentTaskName;
 		this.taskSet = taskSet;
 	}
 
@@ -48,19 +48,19 @@ public class ParentTask {
 
 	public void setParentTaskId(Long parentTaskId) {
 		this.parentTaskId = parentTaskId;
+	}	
+
+	public String getParentTaskName() {
+		return parentTaskName;
 	}
 
-	public String getParentTask() {
-		return parentTask;
-	}
-
-	public void setParentTask(String parentTask) {
-		this.parentTask = parentTask;
+	public void setParentTaskName(String parentTaskName) {
+		this.parentTaskName = parentTaskName;
 	}
 
 	@Override
 	public String toString() {
-		return "ParentTask [parentTaskId=" + parentTaskId + ", parentTask=" + parentTask + "]";
+		return "ParentTask [parentTaskId=" + parentTaskId + ", parentTaskName=" + parentTaskName + "]";
 	}	
 
 }

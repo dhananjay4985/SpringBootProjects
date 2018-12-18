@@ -10,6 +10,6 @@ public interface TaskService {
 	List<Task> getTask();
 	Task findById(Long taskId);
 	void editTask(Task task, Long taskId);
-	void deleteTask(Long taskId);
+	void finishTask(Long taskId);
 
 }

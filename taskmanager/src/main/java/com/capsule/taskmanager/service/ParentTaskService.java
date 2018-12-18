@@ -12,6 +12,8 @@ public interface ParentTaskService {
 	void createParentTask(@Valid ParentTask parentTask);
 	List<ParentTask> getParentTask();
 	ParentTask findById(Long parenatTaskId);
+	ParentTask findByTaskName(String parentTaskName);
 	void editParentTask(ParentTask task, Long parenatTaskId);
 	void deleteParentTask(Long parenatTaskId);
+	
 }
