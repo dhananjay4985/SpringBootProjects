@@ -23,27 +23,31 @@ import com.capsule.taskmanager.service.TaskService;
 @RequestMapping(value="/taskmanager")
 @CrossOrigin(origins="http://localhost:4200",allowedHeaders="*")
 public class TaskController {	
-	
+
 	@Autowired
 	@Qualifier("taskService")
 	private TaskService taskService;
-	
+
 	@GetMapping(value="/alltasks")
 	public List<Task> listAllTasks(){		
 		return taskService.getTask();
 	}
+
 	@GetMapping(value="/alltasks/{taskId}")
 	public Task getTaskById(@PathVariable("taskId") Long taskId) {		
 		return taskService.findById(taskId);
 	}	
+
 	@PutMapping(value="/alltasks/{taskId}")
 	public void editTask(@PathVariable(value = "taskId") Long taskId,@Valid @RequestBody Task taskDetails) {
 		taskService.editTask(taskDetails, taskId);
-	}		
+	}
+
 	@PostMapping(value="/alltasks")
 	public void createTask(@Valid @RequestBody Task task) {
 		taskService.createTask(task);
 	}
+
 	@DeleteMapping(value="/alltasks/{taskId}")
 	public void finishTask(@PathVariable(value = "taskId") Long taskId) {		
 		taskService.finishTask(taskId);
