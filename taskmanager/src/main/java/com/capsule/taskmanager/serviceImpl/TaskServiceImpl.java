@@ -61,16 +61,17 @@ public class TaskServiceImpl implements TaskService {
 	}
 	@Override
 	public void editTask(Task updateTask, Long taskId) {
+		System.out.println("Inside update task"+taskId +"::"+updateTask.toString());
 		Task task = taskRepo.findById(taskId).orElseThrow(() -> new ResourceNotFoundException("Task", "TaskId", taskId));
 		task.setEndDate(updateTask.getEndDate());
 		task.setParentId(updateTask.getParentId());
 		task.setStartDate(updateTask.getStartDate());
 		task.setTaskId(updateTask.getTaskId());
 		task.setTaskName(updateTask.getTaskName());
-		task.setPriorityFrom(0);//default priority is set to 0(Zero)
+		task.setPriorityFrom(updateTask.getPriorityFrom());//default priority is set to 0(Zero)
 		task.setPriorityTo(updateTask.getPriorityTo());
 		task.setParentTask(parentTaskRepo.getOne(updateTask.getParentTask().getParentTaskId()));
-		task.setTaskStatus("Started");//default task status is set to Started
+		task.setTaskStatus(updateTask.getTaskStatus());//default task status is set to Started
 		taskRepo.save(task);
 	}
 	@Override
