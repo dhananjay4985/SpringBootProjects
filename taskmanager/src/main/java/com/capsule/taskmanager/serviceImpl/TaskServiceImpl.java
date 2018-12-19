@@ -26,7 +26,7 @@ public class TaskServiceImpl implements TaskService {
 	}
 
 	@Override
-	public void createTask(Task task) {			
+	public Task createTask(Task task) {			
 		ParentTask parentTask = parentTaskRepo.findTaskByName(task.getParentTaskName());
 		if((task.getPriorityTo().equals(null))){
 			task.setPriorityTo(15);//if user dose not set priority to task,it will set default value = 15 
@@ -43,6 +43,7 @@ public class TaskServiceImpl implements TaskService {
 			task.setParentTask(newParentTask);//assign new parent task to task object			
 		}	
 		taskRepo.save(task);
+		return task;
 	}
 	@Override
 	public List<Task> getTask() {		
@@ -62,7 +63,8 @@ public class TaskServiceImpl implements TaskService {
 		return task;
 	}
 	@Override
-	public void editTask(Task updateTask, Long taskId) {		
+	public void editTask(Task updateTask, Long taskId) {
+		System.out.println("Inside Edit task"+updateTask.toString());
 		Task task = taskRepo.findById(taskId).orElseThrow(() -> new ResourceNotFoundException("Task", "TaskId", taskId));
 		task.setEndDate(updateTask.getEndDate());
 		task.setParentId(updateTask.getParentId());

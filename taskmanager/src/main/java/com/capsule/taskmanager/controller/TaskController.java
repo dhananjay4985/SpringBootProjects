@@ -1,11 +1,13 @@
 package com.capsule.taskmanager.controller;
 
+import java.net.URI;
 import java.util.List;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.capsule.taskmanager.model.Task;
 import com.capsule.taskmanager.service.TaskService;
@@ -43,9 +46,12 @@ public class TaskController {
 		taskService.editTask(taskDetails, taskId);
 	}
 
-	@PostMapping(value="/alltasks")
-	public void createTask(@Valid @RequestBody Task task) {
+	@PostMapping(value="/alltasks")	
+	public ResponseEntity<Void>  createTask(@Valid @RequestBody Task task) {
 		taskService.createTask(task);
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{taskId}").buildAndExpand(task.getTaskId()).toUri();
+		return ResponseEntity.created(location).build();
+		
 	}
 
 	@DeleteMapping(value="/alltasks/{taskId}")

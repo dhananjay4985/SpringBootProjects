@@ -6,7 +6,7 @@ import com.capsule.taskmanager.model.Task;
 
 public interface TaskService {
 	
-	void createTask(Task task);
+	Task createTask(Task task);
 	List<Task> getTask();
 	Task findById(Long taskId);
 	void editTask(Task task, Long taskId);
