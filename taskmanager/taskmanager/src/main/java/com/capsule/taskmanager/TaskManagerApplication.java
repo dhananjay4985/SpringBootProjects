@@ -8,10 +8,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 @SpringBootApplication
-public class TaskmanagerApplication {
+public class TaskManagerApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(TaskmanagerApplication.class, args);
+		SpringApplication.run(TaskManagerApplication.class, args);
 	}
 	
 	@Bean
